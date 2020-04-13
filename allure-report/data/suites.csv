@@ -1,5 +1,0 @@
-"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
-"passed","Sat Apr 11 23:58:13 EEST 2020","Sat Apr 11 23:58:14 EEST 2020","627","Add memo feature","","","","","Add multiple items to memo",""
-"passed","Sat Apr 11 23:58:12 EEST 2020","Sat Apr 11 23:58:13 EEST 2020","1111","Add memo feature","","","","","Add memo from the list",""
-"passed","Sat Apr 11 23:58:14 EEST 2020","Sat Apr 11 23:58:14 EEST 2020","62","Add memo feature","","","","","Delete item from memo",""
-"passed","Sat Apr 11 23:58:14 EEST 2020","Sat Apr 11 23:58:14 EEST 2020","13","Add memo feature","","","","","Delete multiple items from memo",""
