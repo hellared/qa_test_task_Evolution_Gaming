@@ -28,24 +28,6 @@ export const openAdList = () => {
 }
 export const getHeader = () =>
     cy.get('h2');
-export const selectAdInRow = (index) => {
-    const testState = {};
-    cy.get('#head_line').parent().find('tr').eq(index)
-        .within(() => {
-            cy.get('td').eq(2).then(($description) => {
-                const description = $description.find('a').text();
-                expect(description).is.not.empty;
-            })
-                .then(($description) => $description.find('a').text())
-                .then((description) => {
-                    testState.description = description;
-                    cy.root().click();
-                });
-        })
-        .then(() => {
-            cy.get('#content_main_div').should('include.text', testState.description);
-        });
-}
 
 // Memo Page
 export const openFavorites = () => cy.visit('/favorites/');
@@ -58,11 +40,77 @@ export const getViewedAds = () =>
 export const selectMessage = () =>
     cy.contains('Select the messages.');
 
-// Ad page
-export const addToFavorites = () =>
-    cy.findByTitle('Add to favorites')
-        .click();
 export const openMemo = () => {
     cy.findByTitle('Memo')
         .click();
-};    
+};
+
+// Get description from list
+export const getTestState = (index) => {
+    const testState = {};
+    return cy.get('#head_line').parent().find('tr').eq(index)
+        .within(() => {
+            return cy.get('td').eq(2).then(($description) => {
+                $description.find('a').text();
+            })
+                .then(($description) => $description.find('a').text())
+                .then((description) => {
+                    testState.description = description;
+                    testState.index = index;
+                    return testState
+                });
+        })
+}
+
+export const openDetails = (description) =>
+    cy.contains(description).click();
+
+// Select from list and check it on details page    
+export const selectAdInRow = (index) => {
+    return getTestState(index)
+        .then((testState) => {
+            openDetails(testState.description);
+            cy.get('#content_main_div').should('include.text', testState.description);
+        });
+}
+// Get info from details
+export const getTestStateDetails = () => {
+    const testState = {};
+    return cy.get('#content_sys_div_msg').then(($description) => {
+        $description.text();
+    })
+        .then(($description) => $description.text())
+        .then((description) => {
+            testState.description = description;
+            return testState
+        });
+};
+
+// Get info from memo
+export const getTestStateMemo = () => {
+    const testState = {};
+    return cy.get('#head_line').next().find('td').eq(2).then(($description) => {
+        $description.find('a').text();
+    })
+        .then(($description) => $description.find('a').text())
+        .then((shortDescription) => {
+            testState.shortDescription = shortDescription;
+            return testState;
+        });
+}
+// Ad page from details
+export const addToFavorites = () => {
+    return getTestStateDetails().then((testState) => {
+        cy.findByTitle('Add to favorites')
+            .click();
+        checkAlert('Attention', 'Advertisement added to favorites.', 'OK');
+        confirmAlert();
+        openMemo();
+        const long = testState.description;
+        getTestStateMemo().then((testState) => {
+            const short = testState.shortDescription;
+            expect(long.startsWith(short));
+        })
+    });
+}
+
