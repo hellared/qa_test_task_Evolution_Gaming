@@ -46,33 +46,33 @@ export const openMemo = () => {
 };
 
 // Get description from list
-export const getTestState = (index) => {
+export const getTestState = async (index) => {
     const testState = {};
-    return cy.get('#head_line').parent().find('tr').eq(index)
-        .within(() => {
-            return cy.get('td').eq(2).then(($description) => {
-                $description.find('a').text();
-            })
-                .then(($description) => $description.find('a').text())
+    return cy.get('.msg2').eq(index)
+        .then(($description) => $description.find('a').text())
                 .then((description) => {
                     testState.description = description;
                     testState.index = index;
                     return testState
-                });
-        })
+                }).promisify()
 }
 
 export const openDetails = (description) =>
     cy.contains(description).click();
 
 // Select from list and check it on details page    
-export const selectAdInRow = (index) => {
-    return getTestState(index)
-        .then((testState) => {
-            openDetails(testState.description);
-            cy.get('#content_main_div').should('include.text', testState.description);
-        });
+export const selectAdInRow = async (index) => {
+    const testState = await getTestState(index);
+    openDetails(testState.description);
+    cy.get('#content_main_div').should('include.text', testState.description);
 }
+    // return getTestState(index)
+    //     .then((testState) => {
+    //         console.log(testState);
+    //         openDetails(testState.description);
+    //         cy.get('#content_main_div').should('include.text', testState.description);
+    //     });
+// }
 // Get info from details
 export const getTestStateDetails = () => {
     const testState = {};

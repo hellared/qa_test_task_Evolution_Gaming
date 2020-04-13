@@ -3,7 +3,8 @@
     "@shelex/cypress-allure-plugin": "^1.2.0",
     "@testing-library/cypress": "^6.0.0",
     "allure-commandline": "^2.13.0",
-    "cypress": "^4.3.0"
+    "cypress": "^4.4.0",
+    "cypress-xpath": "^1.4.0"
   },
   "scripts": {
     "test": "npx cypress run --config video=false --env allure=true --browser chrome",
