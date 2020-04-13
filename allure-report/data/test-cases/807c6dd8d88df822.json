@@ -1,0 +1,48 @@
+{
+  "uid" : "807c6dd8d88df822",
+  "name" : "Delete item from memo",
+  "fullName" : "Delete item from memo",
+  "historyId" : "41b2e8422187c9af6ad89e786e33d210",
+  "time" : {
+    "start" : 1586638694160,
+    "stop" : 1586638694222,
+    "duration" : 62
+  },
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "afterStages" : [ {
+    "time" : { },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "parentSuite",
+    "value" : "Add memo feature"
+  }, {
+    "name" : "feature",
+    "value" : "Memo"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "807c6dd8d88df822.json",
+  "parameterValues" : [ ]
+}

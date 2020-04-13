@@ -1,0 +1,41 @@
+[ {
+  "uid" : "65fabed1e8c871fe",
+  "name" : "Add multiple items to memo",
+  "time" : {
+    "start" : 1586638693522,
+    "stop" : 1586638694149,
+    "duration" : 627
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "41675358ee72da8c",
+  "name" : "Delete multiple items from memo",
+  "time" : {
+    "start" : 1586638694228,
+    "stop" : 1586638694241,
+    "duration" : 13
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "7c8e474eb9c6709b",
+  "name" : "Add memo from the list",
+  "time" : {
+    "start" : 1586638692390,
+    "stop" : 1586638693501,
+    "duration" : 1111
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "807c6dd8d88df822",
+  "name" : "Delete item from memo",
+  "time" : {
+    "start" : 1586638694160,
+    "stop" : 1586638694222,
+    "duration" : 62
+  },
+  "status" : "passed",
+  "severity" : "normal"
+} ]

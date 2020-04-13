@@ -1,0 +1,61 @@
+{
+  "uid" : "b1a8273437954620fa374b796ffaacdd",
+  "name" : "behaviors",
+  "children" : [ {
+    "name" : "Memo",
+    "children" : [ {
+      "name" : "Add memo from the list",
+      "uid" : "7c8e474eb9c6709b",
+      "parentUid" : "56d416d65fc4c7ad817726d2d3ef9c2f",
+      "status" : "passed",
+      "time" : {
+        "start" : 1586638692390,
+        "stop" : 1586638693501,
+        "duration" : 1111
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ ]
+    }, {
+      "name" : "Add multiple items to memo",
+      "uid" : "65fabed1e8c871fe",
+      "parentUid" : "56d416d65fc4c7ad817726d2d3ef9c2f",
+      "status" : "passed",
+      "time" : {
+        "start" : 1586638693522,
+        "stop" : 1586638694149,
+        "duration" : 627
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ ]
+    }, {
+      "name" : "Delete item from memo",
+      "uid" : "807c6dd8d88df822",
+      "parentUid" : "56d416d65fc4c7ad817726d2d3ef9c2f",
+      "status" : "passed",
+      "time" : {
+        "start" : 1586638694160,
+        "stop" : 1586638694222,
+        "duration" : 62
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ ]
+    }, {
+      "name" : "Delete multiple items from memo",
+      "uid" : "41675358ee72da8c",
+      "parentUid" : "56d416d65fc4c7ad817726d2d3ef9c2f",
+      "status" : "passed",
+      "time" : {
+        "start" : 1586638694228,
+        "stop" : 1586638694241,
+        "duration" : 13
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ ]
+    } ],
+    "uid" : "56d416d65fc4c7ad817726d2d3ef9c2f"
+  } ]
+}
