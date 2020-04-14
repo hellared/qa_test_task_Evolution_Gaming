@@ -69,13 +69,11 @@ export const getTestStateList = async (index) => {
 // Get description from details
 export const getTestStateDetails = async () => {
     const testState = {};
-    return cy.get('#content_sys_div_msg').then(($description) => {
-        $description.text();
-    })
-        .then(($description) => $description.text())
-        .then((description) => {
-            testState.description = description;
-            return testState
+    return cy.get('#msg_div_msg')
+        .then(($description) => {
+            testState.$description = $description;
+            testState.description = $description.text().trim();
+            return testState;
         }).promisify()
 };
 
@@ -85,23 +83,13 @@ export const selectAdInRow = async (index) => {
     openDetails(testState.description);
     cy.get('#content_main_div').should('include.text', testState.description);
 }
-// return getTestState(index)
-//     .then((testState) => {
-//         console.log(testState);
-//         openDetails(testState.description);
-//         cy.get('#content_main_div').should('include.text', testState.description);
-//     });
-// }
 // Get info from memo
 export const getTestStateMemo = async () => {
     const memoState = {};
-    return cy.get('.msg2')
-        .then(($description) => {
-            $description.find('a').text();
-        })
+    return cy.get('.msg2').last()
         .then(($description) => $description.find('a').text())
         .then((description) => {
-            memoState.description = description;
+            memoState.description = description.trim();
             return memoState;
         }).promisify()
 }
@@ -111,11 +99,6 @@ export const addToFavorites = async () => {
     confirmAddToFavorites();
     openMemo();
     const memoState = await getTestStateMemo(testState)
-    const long = testState.description;
-    const short = memoState.description;
-    console.log('long is '+long);
-    console.log('short is ' +short);
-    expect(long.startsWith(short));
-
+    expect(testState.description, 'contains short description').to.contain(memoState.description)
 }
 
