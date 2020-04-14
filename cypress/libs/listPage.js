@@ -1,7 +1,10 @@
 import promisify from 'cypress-promise';
 import * as alert from '../libs/alert';
 
-export const open = () => cy.visit('/animals/cats');
+export const open = () => {
+    cy.visit('/');
+    cy.findByText('Cats, kittens').click()
+}
 export const openMemo = () => cy.findByTitle('Memo').click();
 
 export const getMemoItems = () => cy.get('#mnu_fav_id').invoke('text');
