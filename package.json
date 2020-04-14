@@ -4,6 +4,7 @@
     "@testing-library/cypress": "^6.0.0",
     "allure-commandline": "^2.13.0",
     "cypress": "^4.4.0",
+    "cypress-promise": "^1.1.0",
     "cypress-xpath": "^1.4.0"
   },
   "scripts": {

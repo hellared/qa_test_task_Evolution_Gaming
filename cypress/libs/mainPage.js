@@ -1,3 +1,5 @@
+import promisify from 'cypress-promise'
+
 // Main Page
 export const open = () => cy.visit('/');
 export const selectSection = (name) =>
@@ -40,41 +42,32 @@ export const getViewedAds = () =>
 export const selectMessage = () =>
     cy.contains('Select the messages.');
 
+export const confirmAddToFavorites = () => {
+    cy.findByTitle('Add to favorites')
+        .click();
+    checkAlert('Attention', 'Advertisement added to favorites.', 'OK');
+    confirmAlert();
+};
 export const openMemo = () => {
     cy.findByTitle('Memo')
         .click();
 };
-
-// Get description from list
-export const getTestState = async (index) => {
-    const testState = {};
-    return cy.get('.msg2').eq(index)
-        .then(($description) => $description.find('a').text())
-                .then((description) => {
-                    testState.description = description;
-                    testState.index = index;
-                    return testState
-                }).promisify()
-}
-
 export const openDetails = (description) =>
     cy.contains(description).click();
 
-// Select from list and check it on details page    
-export const selectAdInRow = async (index) => {
-    const testState = await getTestState(index);
-    openDetails(testState.description);
-    cy.get('#content_main_div').should('include.text', testState.description);
+// Get description from list
+export const getTestStateList = async (index) => {
+    const testState = {};
+    return cy.get('.msg2').eq(index)
+        .then(($description) => $description.find('a').text())
+        .then((description) => {
+            testState.description = description;
+            testState.index = index;
+            return testState
+        }).promisify()
 }
-    // return getTestState(index)
-    //     .then((testState) => {
-    //         console.log(testState);
-    //         openDetails(testState.description);
-    //         cy.get('#content_main_div').should('include.text', testState.description);
-    //     });
-// }
-// Get info from details
-export const getTestStateDetails = () => {
+// Get description from details
+export const getTestStateDetails = async () => {
     const testState = {};
     return cy.get('#content_sys_div_msg').then(($description) => {
         $description.text();
@@ -83,34 +76,46 @@ export const getTestStateDetails = () => {
         .then((description) => {
             testState.description = description;
             return testState
-        });
+        }).promisify()
 };
 
+// Select from list and check it on details page    
+export const selectAdInRow = async (index) => {
+    const testState = await getTestStateList(index)
+    openDetails(testState.description);
+    cy.get('#content_main_div').should('include.text', testState.description);
+}
+// return getTestState(index)
+//     .then((testState) => {
+//         console.log(testState);
+//         openDetails(testState.description);
+//         cy.get('#content_main_div').should('include.text', testState.description);
+//     });
+// }
 // Get info from memo
-export const getTestStateMemo = () => {
-    const testState = {};
-    return cy.get('#head_line').next().find('td').eq(2).then(($description) => {
-        $description.find('a').text();
-    })
+export const getTestStateMemo = async () => {
+    const memoState = {};
+    return cy.get('.msg2')
+        .then(($description) => {
+            $description.find('a').text();
+        })
         .then(($description) => $description.find('a').text())
-        .then((shortDescription) => {
-            testState.shortDescription = shortDescription;
-            return testState;
-        });
+        .then((description) => {
+            memoState.description = description;
+            return memoState;
+        }).promisify()
 }
 // Ad page from details
-export const addToFavorites = () => {
-    return getTestStateDetails().then((testState) => {
-        cy.findByTitle('Add to favorites')
-            .click();
-        checkAlert('Attention', 'Advertisement added to favorites.', 'OK');
-        confirmAlert();
-        openMemo();
-        const long = testState.description;
-        getTestStateMemo().then((testState) => {
-            const short = testState.shortDescription;
-            expect(long.startsWith(short));
-        })
-    });
+export const addToFavorites = async () => {
+    const testState = await getTestStateDetails()
+    confirmAddToFavorites();
+    openMemo();
+    const memoState = await getTestStateMemo(testState)
+    const long = testState.description;
+    const short = memoState.description;
+    console.log('long is '+long);
+    console.log('short is ' +short);
+    expect(long.startsWith(short));
+
 }
 
