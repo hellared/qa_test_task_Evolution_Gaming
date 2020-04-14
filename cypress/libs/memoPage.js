@@ -1,8 +1,4 @@
 export const openFavorites = () => cy.visit('/favorites/');
-export const IsMemoActive = () => cy.contains('Memo').should('have.class', 'a_menu_active');
-export const getFavorites = () => cy.contains('Favorites');
-export const getViewedAds = () => cy.contains('Recently viewed ads');
-export const selectMessage = () => cy.contains('Select the messages.');
 
 // Get info from memo
 export const getDetails = async () => {

@@ -7,9 +7,8 @@ export const alertCloseButton = '.alert_head_right';
 export const close = () => cy.get(alertCloseButton).click();
 export const confirm = () => cy.get(alertConfirmButton).click();
 
-export const check = (title, message, confirm) =>
+export const check = (title, message) =>
     cy.get(alert).within(() => {
         cy.get(alertTitle).should('have.text', title);
         cy.get(alertMessage).should('have.text', message);
-        cy.get(alertConfirmButton).should('have.text', confirm);
     });

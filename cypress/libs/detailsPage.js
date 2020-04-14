@@ -6,7 +6,7 @@ export const getDetails = () => cy.get('#content_main_div')
 
 export const clickFavorites = () => {
     cy.findByTitle('Add to favorites').click();
-    alert.check('Attention', 'Advertisement added to favorites.', 'OK');
+    alert.check('Attention', 'Advertisement added to favorites.');
     alert.confirm();
 };
 // Get description from details

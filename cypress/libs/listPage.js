@@ -8,7 +8,6 @@ export const open = () => {
 export const openMemo = () => cy.findByTitle('Memo').click();
 
 export const getMemoItems = () => cy.get('#mnu_fav_id').invoke('text');
-export const getHeader = () => cy.get('h2');
 
 export const addToFavorites = () => {
     cy.get('#a_fav_sel').click();
@@ -38,18 +37,4 @@ export const selectRow = async (index) => {
     const testState = await getTestStateList(index)
     checkRow(index);
     return testState;
-}
-
-export const selectMultipleAds = (rows = []) => {
-    rows.forEach(row => {
-        selectRow(row);
-    });
-}
-export const checkMemoIsAdded = async (index) => {
-    const testState = await getTestStateList(index)
-    selectRow(index);
-    addToFavoritesFromList();
-    openMemo();
-    const memoState = await getTestStateMemo(testState)
-    expect(memoState.description, 'contains short description').to.contain(testState.description)
 }
